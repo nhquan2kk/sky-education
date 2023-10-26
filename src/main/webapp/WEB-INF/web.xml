@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>Education</display-name>
+  <welcome-file-list>
+    <welcome-file>HomeController</welcome-file>
+  </welcome-file-list>
+ 
+<!--  follow viettus -->
+<error-page>
+    <error-code>404</error-code>
+    <location>/ErrorHandler</location>
+</error-page>
+
+<filter>
+   <filter-name>Authentication</filter-name>
+   <filter-class>Filter.Authentication</filter-class>
+</filter>
+<filter-mapping>
+   <filter-name>Authentication</filter-name>
+   <url-pattern>/Authentication</url-pattern>
+   <servlet-name>Controller.AdminExaminationController</servlet-name>
+   <servlet-name>Controller.AdminHomeController</servlet-name>
+<!--    <servlet-name>Controller.LoginController</servlet-name>   -->
+</filter-mapping>
+<servlet>
+    <servlet-name>Controller.AdminExaminationController</servlet-name>
+   <servlet-class>Controller.AdminExaminationController</servlet-class>  
+</servlet>
+<servlet>
+<servlet-name>Controller.AdminHomeController</servlet-name>
+   <servlet-class>Controller.AdminHomeController</servlet-class>
+</servlet>
+<servlet>
+ <servlet-name>Controller.LoginController</servlet-name>
+   <servlet-class>Controller.LoginController</servlet-class>
+</servlet>
+
+</web-app>
