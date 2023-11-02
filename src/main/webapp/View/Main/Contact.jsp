@@ -82,21 +82,21 @@
                         <i class="fa fa-map-marker-alt d-inline-flex align-items-center justify-content-center bg-primary text-secondary rounded-circle" style="width: 45px; height: 45px;"></i>
                         <div class="pl-3">
                             <h5>Address</h5>
-                            <p>123 Street, New York, USA</p>
+                            <p>182 Le Duan, Vinh</p>
                         </div>
                     </div>
                     <div class="d-flex">
                         <i class="fa fa-envelope d-inline-flex align-items-center justify-content-center bg-primary text-secondary rounded-circle" style="width: 45px; height: 45px;"></i>
                         <div class="pl-3">
                             <h5>Email</h5>
-                            <p>info@example.com</p>
+                            <p>13team@gmail.com</p>
                         </div>
                     </div>
                     <div class="d-flex">
                         <i class="fa fa-phone-alt d-inline-flex align-items-center justify-content-center bg-primary text-secondary rounded-circle" style="width: 45px; height: 45px;"></i>
                         <div class="pl-3">
                             <h5>Phone</h5>
-                            <p>+012 345 67890</p>
+                            <p>+84 123 456 789</p>
                         </div>
                     </div>
                     <div class="d-flex">
