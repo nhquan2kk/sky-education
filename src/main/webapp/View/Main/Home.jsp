@@ -189,11 +189,63 @@ topics, 10,000+ questions, detailed results and answers</p>
 	</div> -->
 	<!-- About End -->
 
-  	<!-- new Examination -->
 
-
-
-	<!-- new Examination End -->
+	<!-- Class Start -->
+	<div class="container-fluid pt-5">
+		<div class="container">
+			<div class="text-center pb-2">
+				<p class="section-title px-5">
+					<span class="px-2">English Examination</span>
+				</p>
+				<h1 class="mb-4">New examination</h1>
+			</div>
+			<div class="row">
+			<c:forEach items="${examinationList }" var="item">
+				<div class="col-lg-4 mb-5">
+					<div class="card border-0 bg-light shadow-sm pb-2">
+						<img class="card-img-top mb-2" src="img/examination/${item.image }"
+						style="height : 200px"
+							alt="">
+						<div class="card-body text-center">
+							<h4 class="card-title">${item.name}</h4>
+							<!-- <p class="card-text">Justo ea diam stet diam ipsum no sit,
+								ipsum vero et et diam ipsum duo et no et, ipsum ipsum erat duo
+								amet clita duo</p> -->
+						</div>
+						<!-- <div class="card-footer bg-transPeople py-4 px-5">
+							<div class="row border-bottom">
+								<div class="col-6 py-1 text-right border-right">
+									<strong>Age of Kids</strong>
+								</div>
+								<div class="col-6 py-1">3 - 6 Years</div>
+							</div>
+							<div class="row border-bottom">
+								<div class="col-6 py-1 text-right border-right">
+									<strong>Total Seats</strong>
+								</div>
+								<div class="col-6 py-1">40 Seats</div>
+							</div>
+							<div class="row border-bottom">
+								<div class="col-6 py-1 text-right border-right">
+									<strong>Class Time</strong>
+								</div>
+								<div class="col-6 py-1">08:00 - 10:00</div>
+							</div>
+							<div class="row">
+								<div class="col-6 py-1 text-right border-right">
+									<strong>Tution Fee</strong>
+								</div>
+								<div class="col-6 py-1">$290 / Month</div>
+							</div>
+						</div> -->
+						<a href="DetailExaminationController?examinationId=${item.examinationId }" class="btn btn-primary px-4 mx-auto mb-4">Do it</a>
+					</div>
+				</div>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
+	<!-- Class End -->
 
 
 	<!-- Registration Start -->

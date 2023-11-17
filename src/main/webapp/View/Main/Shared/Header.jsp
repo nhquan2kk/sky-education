@@ -20,8 +20,8 @@
 					href="GrammarController?pageId=1" class="nav-item nav-link">Grammar</a>
 				 
 				<a href="ExaminationController?pageId=1" class="nav-item nav-link">Examination</a>
-				<!-- <a href="VocabularyController?pageId=1" class="nav-item nav-link">Vocabulary</a>
-				<a href="ListeningController?pageId=1" class="nav-item nav-link">Listening</a> -->
+				<a href="VocabularyController?pageId=1" class="nav-item nav-link">Vocabulary</a>
+				<a href="ListeningController?pageId=1" class="nav-item nav-link">Listening</a> 
  				
 				<!--    <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
