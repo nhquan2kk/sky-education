@@ -104,6 +104,7 @@ public class ListeningDAO {
 	public static List<Listening> ListeningPagination(int start, int count, Connection conn){
 		List<Listening> dataListening = new  ArrayList<Listening>();
 		String sql = "select * from listening limit "+ (start - 1) +", "+ count +"";
+		System.out.println("QUERY : "+sql);
 		try {
 			PreparedStatement ptmt = conn.prepareStatement(sql);
 			ResultSet rs = ptmt.executeQuery();
