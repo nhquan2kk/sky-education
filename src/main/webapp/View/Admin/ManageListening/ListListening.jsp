@@ -61,7 +61,7 @@
 				<div class="content-wrapper">
 					<div class="row">
 						<a class="my-4 text-black" href="AdminCreateListeningController">Create
-							new reading</a>
+							new listening</a>
 
 
 						<div class="col-lg-12 grid-margin stretch-card">

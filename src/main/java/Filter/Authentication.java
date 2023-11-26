@@ -17,28 +17,25 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class Authentication
  */
-@WebFilter(
-		urlPatterns = { "/Authentication" }, 
-		servletNames = { 
-				"AdminHomeController",
-				"AdminCreateGrammarController", 
-				"AdminExaminationController", 
-				"AdminCreateVocabularyController"
-		})
+@WebFilter(urlPatterns = { "/Authentication" }, servletNames = {
+
+})
 public class Authentication implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public Authentication() {
-       
-    }
-    private ServletContext context;
-	
+	/**
+	 * Default constructor.
+	 */
+	public Authentication() {
+
+	}
+
+	private ServletContext context;
+
 	public void init(FilterConfig fConfig) throws ServletException {
 		this.context = fConfig.getServletContext();
 		this.context.log("AuthenticationFilter initialized");
-	}	
+	}
+
 	/**
 	 * @see Filter#destroy()
 	 */
@@ -49,26 +46,27 @@ public class Authentication implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		System.out.println("Salaskjdf");
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		System.out.println("START AUTHENTICATION");
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		
+
 		String uri = req.getRequestURI();
-		this.context.log("Requested Resource::"+uri);
-		
+		this.context.log("Requested Resource::" + uri);
+
 		HttpSession session = req.getSession(false);
-		System.out.println("Salaskjdf"+uri+" url " + session + " start ");
+		System.out.println("Salaskjdf" + uri + " url " + session + " start ");
 //		System.out.print(session.getAttribute("sessionMemberId")+"memmber Id : "+session.getAttribute("sessionUser"));
-		if(session == null || (session.getAttribute("sessionMemberId") == null && session.getAttribute("sessionUser") == null)){
+		if (session == null
+				|| (session.getAttribute("sessionMemberId") == null && session.getAttribute("sessionUser") == null)) {
 			this.context.log("Unauthorized access request");
 			res.sendRedirect("LoginController");
-		}else{
+		} else {
 			// pass the request along the filter chain
 			chain.doFilter(request, response);
 		}
 
 	}
-
 
 }
