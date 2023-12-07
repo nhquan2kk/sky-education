@@ -30,7 +30,6 @@ public class AdminCreateGrammarController extends HttpServlet {
 
 	public AdminCreateGrammarController() {
 		super();
-
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +51,6 @@ public class AdminCreateGrammarController extends HttpServlet {
 		if (request.getCharacterEncoding() == null) {
 			request.setCharacterEncoding("UTF-8");
 		}
-
 		Connection conn = DBConnection.CreatConnection();
 		Part part = request.getPart("file");
 		String name = request.getParameter("name");
@@ -63,6 +61,7 @@ public class AdminCreateGrammarController extends HttpServlet {
 		if (!Files.exists(Path.of(realPath))) {
 			Files.createDirectories(Path.of(realPath));
 		}
+		System.out.println("file name : " + fileName + " realPath : " + realPath);
 		part.write(realPath + "/" + fileName);
 
 		Grammar grammar = new Grammar();
@@ -72,7 +71,6 @@ public class AdminCreateGrammarController extends HttpServlet {
 		try {
 			boolean kt = GrammarDAO.AddGrammar(request, conn, grammar, levelId);
 			if (kt) {
-				System.out.println("Back success");
 				response.sendRedirect("AdminGrammarController?pageId=1");
 			} else {
 				request.setAttribute("msg", "Add failed!");
@@ -83,8 +81,6 @@ public class AdminCreateGrammarController extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		System.out.println("file name : " + fileName + " realPath : " + realPath);
 	}
 
 }
