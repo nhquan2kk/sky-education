@@ -43,6 +43,9 @@ public class DetailExaminationController extends HttpServlet {
 			System.out.print("STARTS");
 			List<ExaminationQuiz> examinationQuizs = ExaminationQuizDAO.DetailExamination(conn, examinationId);
 			request.setAttribute("examinationQuizs", examinationQuizs);
+			for(int i = 0; i < examinationQuizs.size(); ++i) {
+				System.out.println(i + "AUDIO MP3: "+examinationQuizs.get(i).getAudioMP3()+" LENGTH: "+examinationQuizs.get(i).getAudioMP3().length());
+			}
 			request.setAttribute("examinationId", examinationId);
 			session.setAttribute("userId", session.getAttribute("sessionMemberId"));
 			RequestDispatcher rd = request.getRequestDispatcher("View/Main/Examination/DetailExamination.jsp");
@@ -56,10 +59,8 @@ public class DetailExaminationController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("SUBMIT EXAMINATION");
 		Connection conn = DBConnection.CreatConnection();
 		HttpSession session = request.getSession(true);
-//		#int memberId = Integer.parseInt(session.getAttribute("sessionMemberId").toString());
 		int memberId = (int)session.getAttribute(constant.ESession.MEMBERID.name());
 		int examinationId = Integer.parseInt(request.getParameter("examinationId"));
 		int countRows = ExaminationQuizDAO.CountRow(conn, examinationId);

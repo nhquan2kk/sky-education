@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
+	<!-- Add this block to prevent back button after logout  -->
+<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+	response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+	response.setDateHeader("Expires", 0);
+%>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -132,7 +132,7 @@ endinject
 						</c:if>
 						<br />
 						<br />
-						<c:if test="${item.audioMP3 != ''}">
+						<c:if test="${item.audioMP3 != 'empty'}">
 							<audio ${item.audioMP3 == '' ? 'style="display : none"' : ''}
 								controls="controls">
 								<source src="resource/${item.audioMP3 }">
@@ -160,10 +160,9 @@ endinject
 						<br>
 						<br>
 					</c:forEach>
-					<button type="button" 	class="btn btn-primary px-4 mx-auto my-2" data-toggle="modal"
-						data-target="#exampleModal-${examinationId}">
-						Submit
-					</button>
+					<button type="button" class="btn btn-primary px-4 mx-auto my-2"
+						data-toggle="modal" data-target="#exampleModal-${examinationId}">
+						Submit</button>
 					<div class="modal fade" id="exampleModal-${examinationId}"
 						tabindex="-1" aria-labelledby="exampleModalLabel"
 						aria-hidden="true">
@@ -246,7 +245,7 @@ endinject
 
 	<!-- Template Javascript -->
 	<script src="Assets/Main/js/main.js"></script>
-	
+
 	<!--  Add from Dashboard-->
 	<script src="Assets/Admin/vendors/js/vendor.bundle.base.js"></script>
 	<!-- endinject -->
