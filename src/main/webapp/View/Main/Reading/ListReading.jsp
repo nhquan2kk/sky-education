@@ -68,28 +68,28 @@
 		<div class="container">
 			<div class="text-center pb-2">
 				<p class="section-title px-5">
-					<span class="px-2">Listening</span>
+					<span class="px-2">Reading</span>
 				</p>
 				<!-- <h1 class="mb-4">Latest Articles From Blog</h1> -->
 			</div>
 			<div class="row pb-3">
-				<c:forEach items="${listeningsList }" var="item">
+				<c:forEach items="${readingsList }" var="item">
 					<div class="col-lg-4 mb-4">
 						<div class="card border-0 shadow-sm mb-2">
-							<img class="card-img-top mb-2" src="img/listening/${item.image }" alt="" style="height : 200px">
+							<img class="card-img-top mb-2" src="img/examination/${item.image }" alt="" style="height : 200px">
 							<div class="card-body bg-light text-center p-4">
 								<h4 class="">${item.name }</h4>
 								<div class="d-flex justify-content-center mb-3">
 									<small class="mr-3"><i class="fa fa-user text-primary"></i>
 										Admin</small> <small class="mr-3"><i
-										class="fa fa-folder text-primary"></i> Listening</small> <small
+										class="fa fa-folder text-primary"></i> Reading</small> <small
 										class="mr-3"><i class="fa fa-comments text-primary"></i>
 										15</small>
 								</div>
 								<!-- <p>Sed kasd sea sed at elitr sed ipsum justo, sit nonumy
 									diam eirmod, duo et sed sit eirmod kasd clita tempor dolor stet
 									lorem. Tempor ipsum justo amet stet...</p> -->
-								<a href="DetailListeningController?listenId=${item.listenId }"
+								<a href="DetailReadingController?readingId=${item.readingId }"
 									class="btn btn-primary px-4 mx-auto my-2">Read More</a>
 							</div>
 						</div>
@@ -103,10 +103,10 @@
 									href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 										<span class="sr-only">Previous</span>
 								</a></li>
-								<li class="page-item active"><a class="page-link" href="ListeningController?pageId=1">1</a></li>
-								<li class="page-item"><a class="page-link" href="ListeningController?pageId=2">2</a></li>
-								<li class="page-item"><a class="page-link" href="ListeningController?pageId=3">3</a></li>
-								<li class="page-item"><a class="page-link" href="ListeningController?pageId=${numberPage + 1 }"
+								<li class="page-item active"><a class="page-link" href="ReadingController?pageId=1">1</a></li>
+								<li class="page-item"><a class="page-link" href="ReadingController?pageId=2">2</a></li>
+								<li class="page-item"><a class="page-link" href="ReadingController?pageId=3">3</a></li>
+								<li class="page-item"><a class="page-link" href="ReadingController?pageId=${numberPage + 1 }"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 										<span class="sr-only">Next</span>
 								</a></li>
@@ -114,12 +114,12 @@
 							</c:if>
 							<c:if test="${numberPage == maxPageId }">
 								<li class="page-item "><a class="page-link"
-									href="ListeningController?pageId=${numberPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+									href="ReadingController?pageId=${numberPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 										<span class="sr-only">Previous</span>
 								</a></li>
-								<li class="page-item "><a class="page-link" href="ListeningController?pageId=1">1</a></li>
-								<li class="page-item"><a class="page-link" href="ListeningController?pageId=2">2</a></li>
-								<li class="page-item"><a class="page-link" href="ListeningController?pageId=3">3</a></li>
+								<li class="page-item "><a class="page-link" href="ReadingController?pageId=1">1</a></li>
+								<li class="page-item"><a class="page-link" href="ReadingController?pageId=2">2</a></li>
+								<li class="page-item"><a class="page-link" href="ReadingController?pageId=3">3</a></li>
 								<li class="page-item"><a class="page-link disabled" href="#"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 										<span class="sr-only">Next</span>
@@ -128,13 +128,13 @@
 							</c:if>
 							<c:if test="${numberPage != 1 && numberPage < maxPageId }">
 								<li class="page-item "><a class="page-link"
-									href="ListeningController?pageId=${numberPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+									href="ReadingController?pageId=${numberPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 										<span class="sr-only">Previous</span>
 								</a></li>
-								<li class="page-item active"><a class="page-link" href="ListeningController?pageId=">1</a></li>
-								<li class="page-item"><a class="page-link" href="ListeningController?pageId=2">2</a></li>
-								<li class="page-item"><a class="page-link" href="ListeningController?pageId=3">3</a></li>
-								<li class="page-item"><a class="page-link" href="ListeningController?page=${numberPage + 1 }"
+								<li class="page-item active"><a class="page-link" href="ReadingController?pageId=">1</a></li>
+								<li class="page-item"><a class="page-link" href="ReadingController?pageId=2">2</a></li>
+								<li class="page-item"><a class="page-link" href="ReadingController?pageId=3">3</a></li>
+								<li class="page-item"><a class="page-link" href="ReadingController?page=${numberPage + 1 }"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 										<span class="sr-only">Next</span>
 								</a></li>

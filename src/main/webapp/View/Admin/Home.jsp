@@ -110,9 +110,6 @@
 										</div>
 									</div>
 								</div>
-								
-								
-								
 								<div class="col-md-2 mb-4 stretch-card transparent">
 									<div class="card card-dark-blue">
 										<div class="card-body">

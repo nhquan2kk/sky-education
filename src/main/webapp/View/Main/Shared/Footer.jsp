@@ -69,7 +69,7 @@
         </div>
         <div class="container-fluid pt-5" style="border-top: 1px solid rgba(23, 162, 184, .2);;">
             <p class="m-0 text-center text-white">
-                &copy; <a class="text-primary font-weight-bold" href="#">Sky Education</a>. All Rights Reserved. Designed
+                &copy; <a class="text-primary font-weight-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
                 by
                 <a class="text-primary font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
             </p>

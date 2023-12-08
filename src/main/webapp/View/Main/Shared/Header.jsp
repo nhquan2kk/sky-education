@@ -18,11 +18,10 @@
 			<div class="navbar-nav font-weight-bold mx-auto py-0">
 				<a href="HomeController" class="nav-item nav-link active">Home</a> <a
 					href="GrammarController?pageId=1" class="nav-item nav-link">Grammar</a>
-				 
 				<a href="ExaminationController?pageId=1" class="nav-item nav-link">Examination</a>
 				<a href="VocabularyController?pageId=1" class="nav-item nav-link">Vocabulary</a>
-				<a href="ListeningController?pageId=1" class="nav-item nav-link">Listening</a> 
- 				
+				<a href="ListeningController?pageId=1" class="nav-item nav-link">Listening</a>
+
 				<!--    <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu rounded-0 m-0">
@@ -30,8 +29,9 @@
                             <a href="single.html" class="dropdown-item">Blog Detail</a>
                         </div>
                     </div> -->
-				<!-- <a href="ReadingController?pageId=1" class="nav-item nav-link">Reading</a> -->
+				<a href="ReadingController?pageId=1" class="nav-item nav-link">Reading</a>
 				<a href="ContactController" class="nav-item nav-link">Contact</a>
+				<!--      <a href="contact.html" class="nav-item nav-link">Contact</a> -->
 			</div>
 			<%
 			if (session.getAttribute("sessionUser") == null) {

@@ -1,38 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>Education</display-name>
-  <welcome-file-list>
-    <welcome-file>HomeController</welcome-file>
-  </welcome-file-list>
- 
-<!--  follow viettus -->
-<error-page>
-    <error-code>404</error-code>
-    <location>/ErrorHandler</location>
-</error-page>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>Education</display-name>
+	<welcome-file-list>
+		<welcome-file>HomeController</welcome-file>
+	</welcome-file-list>
 
-<filter>
-   <filter-name>Authentication</filter-name>
-   <filter-class>Filter.Authentication</filter-class>
-</filter>
-<filter-mapping>
-   <filter-name>Authentication</filter-name>
-   <url-pattern>/Authentication</url-pattern>
-   <servlet-name>Controller.AdminExaminationController</servlet-name>
-   <servlet-name>Controller.AdminHomeController</servlet-name>
-<!--    <servlet-name>Controller.LoginController</servlet-name>   -->
-</filter-mapping>
-<servlet>
-    <servlet-name>Controller.AdminExaminationController</servlet-name>
-   <servlet-class>Controller.AdminExaminationController</servlet-class>  
-</servlet>
-<servlet>
-<servlet-name>Controller.AdminHomeController</servlet-name>
-   <servlet-class>Controller.AdminHomeController</servlet-class>
-</servlet>
-<servlet>
- <servlet-name>Controller.LoginController</servlet-name>
-   <servlet-class>Controller.LoginController</servlet-class>
-</servlet>
+	<!-- follow viettus -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/ErrorHandler</location>
+	</error-page>
 
+	<filter>
+		<filter-name>Authentication</filter-name>
+		<filter-class>Filter.Authentication</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Authentication</filter-name>
+		<url-pattern>/Authentication</url-pattern>
+		<servlet-name>Controller.AdminHomeController</servlet-name>
+		<servlet-name>Controller.AdminGrammarController</servlet-name>
+		<servlet-name>Controller.AdminExaminationController</servlet-name>
+		<servlet-name>Controller.AdminListeningController</servlet-name>
+		<servlet-name>Controller.AdminVocabularyController</servlet-name>
+		<servlet-name>Controller.AdminCreateExaminationController</servlet-name>
+		<servlet-name>Controller.AdminCreateGrammarController</servlet-name>
+		<!-- it has a error <servlet-name>Controller.AdminCreateListeningController</servlet-name> -->
+		<servlet-name>Controller.AdminDeleteExaminationController</servlet-name>
+		<servlet-name>Controller.AdminDeleteGrammarController</servlet-name>
+		<servlet-name>Controller.AdminDeleteListeningController</servlet-name>
+		<servlet-name>Controller.AdminDeleteVocabularyController</servlet-name>
+		<servlet-name>Controller.AdminUpdateExaminationController</servlet-name>
+		<servlet-name>Controller.AdminUpdateGrammarController</servlet-name>
+		<servlet-name>Controller.AdminUpdateListeningController</servlet-name>
+		<servlet-name>Controller.AdminUpdateVocabularyController</servlet-name>
+	<!-- 	<servlet-name>Controller.AdminCreateExaminationController</servlet-name>
+		<servlet-name>Controller.AdminCreateExaminationController</servlet-name>
+		<servlet-name>Controller.AdminCreateExaminationController</servlet-name>
+		<servlet-name>Controller.AdminCreateExaminationController</servlet-name> -->
+	</filter-mapping>
+	<servlet>
+		<servlet-name>Controller.AdminHomeController</servlet-name>
+		<servlet-class>Controller.AdminHomeController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminExaminationController</servlet-name>
+		<servlet-class>Controller.AdminExaminationController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminGrammarController</servlet-name>
+		<servlet-class>Controller.AdminGrammarController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminVocabularyController</servlet-name>
+		<servlet-class>Controller.AdminVocabularyController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminListeningController</servlet-name>
+		<servlet-class>Controller.AdminListeningController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminCreateExaminationController</servlet-name>
+		<servlet-class>Controller.AdminCreateExaminationController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminCreateGrammarController</servlet-name>
+		<servlet-class>Controller.AdminCreateGrammarController</servlet-class>
+	</servlet>
+<!-- 	<servlet>
+		<servlet-name>Controller.AdminCreateListeningController</servlet-name>
+		<servlet-class>Controller.AdminCreateListeningController></servlet-class>
+	</servlet> -->
+	<servlet>
+		<servlet-name>Controller.AdminDeleteExaminationController</servlet-name>
+		<servlet-class>Controller.AdminDeleteExaminationController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminDeleteGrammarController</servlet-name>
+		<servlet-class>Controller.AdminDeleteGrammarController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminDeleteListeningController</servlet-name>
+		<servlet-class>Controller.AdminDeleteListeningController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminDeleteVocabularyController</servlet-name>
+		<servlet-class>Controller.AdminDeleteVocabularyController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminUpdateExaminationController</servlet-name>
+		<servlet-class>Controller.AdminUpdateExaminationController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminUpdateGrammarController</servlet-name>
+		<servlet-class>Controller.AdminUpdateGrammarController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminUpdateListeningController</servlet-name>
+		<servlet-class>Controller.AdminUpdateListeningController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminUpdateVocabularyController</servlet-name>
+		<servlet-class>Controller.AdminUpdateVocabularyController</servlet-class>
+	</servlet>
+	<!-- <servlet>
+		<servlet-name>Controller.AdminDeleteGrammarController</servlet-name>
+		<servlet-class>Controller.AdminDeleteGrammarController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Controller.AdminDeleteGrammarController</servlet-name>
+		<servlet-class>Controller.AdminDeleteGrammarController</servlet-class>
+	</servlet> -->
 </web-app>
