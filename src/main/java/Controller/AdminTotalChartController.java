@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,25 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import BEAN.Level;
-import DAO.ExaminationDAO;
-import DAO.GrammarDAO;
 import DAO.LevelDAO;
-import DAO.ListeningDAO;
-import DAO.ReadingDAO;
-import DAO.VocabularyDAO;
 import DB.DBConnection;
 
 /**
- * Servlet implementation class HomeAdminController
+ * Servlet implementation class AdminTotalChartController
  */
-@WebServlet("/AdminHomeController")
-public class AdminHomeController extends HttpServlet {
+@WebServlet("/AdminTotalChartController")
+public class AdminTotalChartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminHomeController() {
+    public AdminTotalChartController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,24 +36,12 @@ public class AdminHomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			Connection conn = DBConnection.CreatConnection();
-			int grammarTotal = GrammarDAO.CountRow(conn);
-			int examinationTotal = ExaminationDAO.CountRow(conn);
-			int vocabularyTotal = VocabularyDAO.CountRow(conn);
-			int readingTotal = ReadingDAO.CountRow(conn);
-			int listeningTotal = ListeningDAO.CountRow(conn);
-			
-			request.setAttribute("grammarTotal", grammarTotal);
-			request.setAttribute("examinationTotal", examinationTotal);
-			request.setAttribute("vocabularyTotal", vocabularyTotal);
-			request.setAttribute("readingTotal", readingTotal);
-			request.setAttribute("listeningTotal", listeningTotal);
-			request.setAttribute("currentDay", java.time.LocalDate.now());
+			List<Level> listLevel = LevelDAO.ShowLevelList(conn);
+			request.setAttribute("listLevel", listLevel);
 			conn.close();
 		} catch (SQLException error) {
 			error.printStackTrace();
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("View/Admin/Home.jsp");
-		rd.forward(request, response);
 	}
 
 	/**

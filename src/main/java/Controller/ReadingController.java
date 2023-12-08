@@ -12,33 +12,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import BEAN.Vocabulary;
-import DAO.VocabularyDAO;
+import BEAN.Reading;
+import DAO.ReadingDAO;
 import DB.DBConnection;
 
 /**
- * Servlet implementation class VocabularyController
+ * Servlet implementation class ReadingController
  */
-@WebServlet("/VocabularyController")
-public class VocabularyController extends HttpServlet {
+@WebServlet("/ReadingController")
+public class ReadingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public VocabularyController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ReadingController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			int pageId = Integer.parseInt(request.getParameter("pageId"));
 			int start = pageId;
-			int COUNT = 6;
+			int COUNT = 10;
 			if (start == 0)
 				System.out.println("nothing here");
 			else {
@@ -46,8 +48,8 @@ public class VocabularyController extends HttpServlet {
 				start = start * COUNT + 1;
 			}
 			Connection conn = DBConnection.CreatConnection();
-			List<Vocabulary> vocabularysList = VocabularyDAO.VocabularyPagination(start, COUNT, conn);
-			int sumRow = VocabularyDAO.CountRow(conn);
+			List<Reading> readingsList = ReadingDAO.ReadingPagination(start, COUNT, conn);
+			int sumRow = ReadingDAO.CountRow(conn);
 			int maxPageId = 0;
 
 			if ((sumRow / COUNT) % 2 == 0) {
@@ -56,10 +58,10 @@ public class VocabularyController extends HttpServlet {
 				maxPageId = (sumRow / COUNT) + 1;
 
 			request.setAttribute("maxPageId", maxPageId);
-			request.setAttribute("vocabularysList", vocabularysList);
+			request.setAttribute("readingsList", readingsList);
 			request.setAttribute("numberPage", pageId);
 			System.out.println("max page id " + maxPageId + "number page : " + pageId);
-			RequestDispatcher rd = request.getRequestDispatcher("View/Main/Vocabulary/ListVocabulary.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("View/Main/Reading/ListReading.jsp");
 			rd.forward(request, response);
 			conn.close();
 		} catch (SQLException e) {
@@ -67,10 +69,8 @@ public class VocabularyController extends HttpServlet {
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

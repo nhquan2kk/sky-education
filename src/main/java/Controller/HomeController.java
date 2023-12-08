@@ -1,4 +1,5 @@
 package Controller;
+
 import java.io.IOException; 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,10 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
+import BEAN.Examination;
 import BEAN.Grammar;
+import DAO.ExaminationDAO;
 import DAO.GrammarDAO;
 import DB.DBConnection;
-
 
 @WebServlet("/HomeController")
 public class HomeController extends HttpServlet {
@@ -31,9 +33,9 @@ public class HomeController extends HttpServlet {
 		String country = locale.getCountry();
 		System.out.println(locale + language + country);
 		try {
-//			List<Examination> examinationList = ExaminationDAO.NewExamination(conn);
+			List<Examination> examinationList = ExaminationDAO.NewExamination(conn);
 			List<Grammar> grammarList = GrammarDAO.NewGrammar(conn);
-//			request.setAttribute("examinationList", examinationList);
+			request.setAttribute("examinationList", examinationList);
 			request.setAttribute("grammarList", grammarList);
 			response.setHeader("Content-Language", "es");
 			conn.close();

@@ -1,6 +1,6 @@
 package Controller;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -84,6 +84,7 @@ public class DetailExaminationController extends HttpServlet {
 				au.setNumber(i);
 				au.setAnswer("");
 				listAnswer.add(au);
+
 			}
 		}
 		Date currentTime = new Date();

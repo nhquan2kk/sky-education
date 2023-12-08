@@ -10,21 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.ListeningDAO;
 import DAO.ReadingDAO;
 import DB.DBConnection;
 
 /**
- * Servlet implementation class AdminDeleteListeningController
+ * Servlet implementation class AdminDeleteReadingController
  */
-@WebServlet("/AdminDeleteListeningController")
-public class AdminDeleteListeningController extends HttpServlet {
+@WebServlet("/AdminDeleteReadingController")
+public class AdminDeleteReadingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminDeleteListeningController() {
+    public AdminDeleteReadingController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,16 +40,16 @@ public class AdminDeleteListeningController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int listenId = Integer.parseInt(request.getParameter("listenId"));
+		int readingId = Integer.parseInt(request.getParameter("readingId"));
 		Connection conn = DBConnection.CreatConnection();
 		
 		try {
-			boolean isDelete = ListeningDAO.DeleteListening(conn, listenId);
+			boolean isDelete = ReadingDAO.DeleteReading(conn, readingId);
 			if(isDelete){
-				response.sendRedirect("AdminListeningController?pageId=1"); 	
+				response.sendRedirect("AdminReadingController?pageId=1"); 	
 			}else {
 				request.setAttribute("msg", "Delete Failed");
-				response.sendRedirect("AdminListeningController?pageId=1");
+				response.sendRedirect("AdminReadingController?pageId=1");
 			}
 			conn.close();
 		}catch(SQLException error) {

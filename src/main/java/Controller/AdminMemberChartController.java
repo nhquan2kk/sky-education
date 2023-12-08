@@ -1,6 +1,6 @@
 package Controller;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.nio.IntBuffer;
 import java.sql.Connection;
 import java.sql.Date;
@@ -19,8 +19,12 @@ import BEAN.ExaminationLevelChart;
 import BEAN.Level;
 import BEAN.MemberChart;
 import DAO.ChartDAO;
+import DAO.ExaminationDAO;
 import DAO.GrammarDAO;
 import DAO.LevelDAO;
+import DAO.ListeningDAO;
+import DAO.ReadingDAO;
+import DAO.VocabularyDAO;
 import DB.DBConnection;
 
 class ChartData {
@@ -76,16 +80,16 @@ public class AdminMemberChartController extends HttpServlet {
 			Connection conn = DBConnection.CreatConnection();
 			List<MemberChart> dataList = ChartDAO.ShowMemberChart(conn);
 			int grammarTotal = GrammarDAO.CountRow(conn);
-//			int examinationTotal = ExaminationDAO.CountRow(conn);
-//			int vocabularyTotal = VocabularyDAO.CountRow(conn);
-//			int readingTotal = ReadingDAO.CountRow(conn);
-//			int listeningTotal = ListeningDAO.CountRow(conn);
+			int examinationTotal = ExaminationDAO.CountRow(conn);
+			int vocabularyTotal = VocabularyDAO.CountRow(conn);
+			int readingTotal = ReadingDAO.CountRow(conn);
+			int listeningTotal = ListeningDAO.CountRow(conn);
 			List<Integer> eleTotal = new ArrayList<Integer>();
 			eleTotal.add(grammarTotal);
-//			eleTotal.add(examinationTotal);
-//			eleTotal.add(vocabularyTotal);
-//			eleTotal.add(readingTotal);
-//			eleTotal.add(listeningTotal);
+			eleTotal.add(examinationTotal);
+			eleTotal.add(vocabularyTotal);
+			eleTotal.add(readingTotal);
+			eleTotal.add(listeningTotal);
 			
 			List<ExaminationLevelChart> exLvChartData = ChartDAO.ShowExaminationOfLevels(conn);
 			
