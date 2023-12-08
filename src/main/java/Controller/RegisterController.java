@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import BEAN.Member;
 import DAO.RegisterDAO;
 import DB.DBConnection;
+import util.helpers;
 
 
 @WebServlet("/RegisterController")
@@ -42,14 +43,15 @@ public class RegisterController extends HttpServlet {
 		Member member = new Member();
 		member.setFullName(fullName);
 		member.setUsername(username);
-		member.setPassword(password);
+		member.setPassword(helpers.getMd5(password));
 		boolean test = RegisterDAO.InsertAccount(conn, member);
+		System.out.println("REGISTER: "+helpers.getMd5(password)+" "+test);
 		if(test) {
-			request.setAttribute("msg", "Đăng kí thành công");
+			request.setAttribute("msg", "Register successfull");
 			RequestDispatcher rd = request.getRequestDispatcher("View/Shared/Login.jsp");
 			rd.forward(request, response);
 		}else {
-			request.setAttribute("msg", "Đăng kí thất bại");
+			request.setAttribute("msg", "Register error");
 			RequestDispatcher rd = request.getRequestDispatcher("RegisterController");
 			rd.forward(request, response);
 		}

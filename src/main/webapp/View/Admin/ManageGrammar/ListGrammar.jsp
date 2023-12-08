@@ -76,9 +76,9 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach items="${ listGrammar}" var="item">
+												<c:forEach items="${ listGrammar}" var="item" varStatus="index">
 													<tr>
-														<td>${item.grammarId}</td>
+														<td>${index.count}</td>
 														<td><a
 															href="DetailGrammarController?grammarId=${item.grammarId }"
 															class="">${item.name }</a></td>

@@ -25,6 +25,7 @@ public class RegisterDAO {
 			ptmt.setInt(4, roleId);
 			
 			int kt = ptmt.executeUpdate();
+			System.out.println("RESULT : "+kt);
 			if(kt != 0) {
 				return true;
 			}

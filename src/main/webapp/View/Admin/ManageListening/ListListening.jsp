@@ -67,7 +67,6 @@
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">Bordered table</h4>
 									<div class="table-responsive pt-3">
 										<table class="table table-bordered">
 											<thead>
@@ -79,16 +78,17 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach items="${ listeningList}" var="item">
+												<c:forEach items="${ listeningList}" var="item"
+													varStatus="index">
 													<tr>
-														<td>${item.listenId}</td>
-														<td><a
+														<td>${index.count}</td>
+														<td><
 															href="DetailListeningController?listenId=${item.listenId }"
 															class="">${item.name }</a></td>
 														<td><img src="img/listening/${item.image}" /></td>
 														<td class="d-flex align-items-center"><a
-															href="AdminUpdateListeningController?listenId=${item.listenId }"> <i
-																class="mdi mdi-table-edit btn-icon"></i>
+															href="AdminUpdateListeningController?listenId=${item.listenId }">
+																<i class="mdi mdi-table-edit btn-icon"></i>
 														</a>
 															<form id="deleteForm" method="post"
 																action="AdminDeleteListeningController">

@@ -70,8 +70,9 @@
 								<div class="card-body">
 								<div id="grammarContent" style="display: none">${grammarData.content }</div>
 									<form class="forms-sample" enctype="multipart/form-data"
-										method="post" action="AdminCreateGrammarController"
+										method="post" action="AdminUpdateGrammarController"
 										id="myForm" novalidate>
+										<input type="hidden" value="${grammarId }" name="grammarId"/>
 										<div class="form-group">
 											<label for="name">Name</label> <input name="name" type="text"
 												required class="form-control" id="exampleInputName1"

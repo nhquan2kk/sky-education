@@ -16,6 +16,7 @@ import BEAN.Member;
 import DAO.LoginDAO;
 import DB.DBConnection;
 import util.constant;
+import util.helpers;
 
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
@@ -51,7 +52,7 @@ public class LoginController extends HttpServlet {
 
 		Member acc = new Member();
 		acc.setUsername(username);
-		acc.setPassword(password);
+		acc.setPassword(helpers.getMd5(password));
 		try {
 			boolean isAuth = LoginDAO.AuthenticationMember(conn, acc);
 			if (isAuth) {
