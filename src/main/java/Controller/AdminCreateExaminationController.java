@@ -31,7 +31,6 @@ public class AdminCreateExaminationController extends HttpServlet {
 
     public AdminCreateExaminationController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mysql.cj.Session;
+
 import BEAN.Answer;
 import BEAN.ExaminationQuiz;
 import BEAN.Result;
@@ -22,6 +24,7 @@ import DAO.ExaminationQuizDAO;
 import DAO.ReadingQuizDAO;
 import DAO.ResultDAO;
 import DB.DBConnection;
+import util.constant;
 
 @WebServlet("/DetailExaminationController")
 public class DetailExaminationController extends HttpServlet {
@@ -29,7 +32,6 @@ public class DetailExaminationController extends HttpServlet {
 
 	public DetailExaminationController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,9 +40,14 @@ public class DetailExaminationController extends HttpServlet {
 		Connection conn = DBConnection.CreatConnection();
 		HttpSession session = request.getSession(true);
 		if (session.getAttribute("sessionUser") != null) {
+			System.out.print("STARTS");
 			List<ExaminationQuiz> examinationQuizs = ExaminationQuizDAO.DetailExamination(conn, examinationId);
 			request.setAttribute("examinationQuizs", examinationQuizs);
+			for(int i = 0; i < examinationQuizs.size(); ++i) {
+				System.out.println(i + "AUDIO MP3: "+examinationQuizs.get(i).getAudioMP3()+" LENGTH: "+examinationQuizs.get(i).getAudioMP3().length());
+			}
 			request.setAttribute("examinationId", examinationId);
+			session.setAttribute("userId", session.getAttribute("sessionMemberId"));
 			RequestDispatcher rd = request.getRequestDispatcher("View/Main/Examination/DetailExamination.jsp");
 			rd.forward(request, response);
 		} else {
@@ -52,11 +59,9 @@ public class DetailExaminationController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		System.out.println("Time out");
 		Connection conn = DBConnection.CreatConnection();
 		HttpSession session = request.getSession(true);
-		int memberId = Integer.parseInt(session.getAttribute("sessionId").toString());
+		int memberId = (int)session.getAttribute(constant.ESession.MEMBERID.name());
 		int examinationId = Integer.parseInt(request.getParameter("examinationId"));
 		int countRows = ExaminationQuizDAO.CountRow(conn, examinationId);
 		List<ExaminationQuiz> listCorrectAnswer = ExaminationQuizDAO.DetailExamination(conn, examinationId);
@@ -83,7 +88,6 @@ public class DetailExaminationController extends HttpServlet {
 			}
 		}
 		Date currentTime = new Date();
-		System.out.println("Thoi gian : " + currentTime.getTime());
 		int numberWrongAnswer = countRows - points;
 		Result result = new Result();
 		result.setCorrectAnswer(points);
@@ -96,7 +100,5 @@ public class DetailExaminationController extends HttpServlet {
 		request.setAttribute("listAnswer", listAnswer);
 		RequestDispatcher rd = request.getRequestDispatcher("View/Main/Examination/ResultExamination.jsp");
 		rd.forward(request, response);
-		
 	}
-
 }

@@ -23,17 +23,10 @@ import DB.DBConnection;
 public class ListeningController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public ListeningController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			int pageId = Integer.parseInt(request.getParameter("pageId"));
@@ -47,6 +40,7 @@ public class ListeningController extends HttpServlet {
 			}
 			Connection conn = DBConnection.CreatConnection();
 			List<Listening> listeningsList = ListeningDAO.ListeningPagination(start, COUNT, conn);
+			System.out.println("LENGTH : " + listeningsList.size());
 			int sumRow = ListeningDAO.CountRow(conn);
 			int maxPageId = 0;
 

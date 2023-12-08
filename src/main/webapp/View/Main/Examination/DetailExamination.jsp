@@ -37,8 +37,23 @@
 
 <!-- Customized Bootstrap Stylesheet -->
 <link href="Assets/Main/css/style.css" rel="stylesheet">
-
-
+<!-- Add from DASHBOARD -->
+<!-- <link rel="stylesheet" href="Assets/Admin/vendors/feather/feather.css">
+<link rel="stylesheet"
+	href="Assets/Admin/vendors/ti-icons/css/themify-icons.css">
+<link rel="stylesheet"
+	href="Assets/Admin/vendors/css/vendor.bundle.base.css">
+endinject
+Plugin css for this page
+<link rel="stylesheet"
+	href="Assets/Admin/vendors/mdi/css/materialdesignicons.min.css">
+End plugin css for this page
+inject:css
+<link rel="stylesheet"
+	href="Assets/Admin/css/vertical-layout-light/style.css">
+endinject
+<link rel="shortcut icon" href="Assets/Admin/images/favicon.png" />
+<link rel="stylesheet" href="Assets/Admin/css/custom/style.css"> -->
 
 
 <script type="text/javascript">
@@ -59,16 +74,31 @@
 	<!-- Navbar End -->
 
 	<%
-				if (session.getAttribute("sessionUser") == null) {
-				%>
+	if (session.getAttribute("sessionUser") == null) {
+	%>
 	<div class="container mt-5">
 		<div class="row ">
 			<h4>Please login to do examination.</h4>
 		</div>
 	</div>
 	<%
-				} else {
-				%>
+	} else {
+	%>
+	<%-- <c:if test="${session.getAttribute('sessionUser') == null}">
+		<h1>TESTING IN C IF BLOCK</h1>
+	</c:if>
+	<c:choose>
+		<c:when test="${session.getAttribute('sessionUser') == null}">
+			<h1>TESTING IN CHATGPT</h1>
+		</c:when>
+		<c:otherwise>
+			<!-- Xử lý khi sessionUser không bằng null -->
+		</c:otherwise>
+	</c:choose>
+	<c:if test="${sessionScope:userId != null}" > 
+   session value present......
+  <h1>CONINTINET TESTIN</h1>
+</c:if--%>
 	<div class="container-fluid bg-primary mb-5">
 		<div
 			class="d-flex flex-column align-items-center justify-content-center"
@@ -102,7 +132,7 @@
 						</c:if>
 						<br />
 						<br />
-						<c:if test="${item.audioMP3 != ''}">
+						<c:if test="${item.audioMP3 != 'empty'}">
 							<audio ${item.audioMP3 == '' ? 'style="display : none"' : ''}
 								controls="controls">
 								<source src="resource/${item.audioMP3 }">
@@ -117,30 +147,51 @@
 						</c:if>
 
 						<input type="radio" name="ans[${item.num }]" value="A">
-						<span> A. ${item.option1 }</span>
+						<span> ${item.option1 }</span>
 						<br>
 						<input type="radio" name="ans[${item.num }]" value="B" />
-						<span> B. ${item.option2 }</span>
+						<span> ${item.option2 }</span>
 						<br>
 						<input type="radio" name="ans[${item.num }]" value="C" />
-						<span> C. ${item.option3 }</span>
+						<span> ${item.option3 }</span>
 						<br>
 						<input type="radio" name="ans[${item.num }]" value="D" />
-						<span> D. ${item.option4 }</span>
+						<span> ${item.option4 }</span>
 						<br>
 						<br>
 					</c:forEach>
-					<input type="submit" value="Submit"
-						class="btn btn-primary px-4 mx-auto my-2" />
-
+					<button type="button" class="btn btn-primary px-4 mx-auto my-2"
+						data-toggle="modal" data-target="#exampleModal-${examinationId}">
+						Submit</button>
+					<div class="modal fade" id="exampleModal-${examinationId}"
+						tabindex="-1" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">Do you want to finish your
+									examination?</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">Cancer</button>
+									<button type="submit" class="btn btn-primary">Ok</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</form>
-
 			</div>
-
-
 		</div>
 	</div>
-	<%} %>
+	<%
+	}
+	%>
 	<!-- Detail End -->
 
 
@@ -194,6 +245,18 @@
 
 	<!-- Template Javascript -->
 	<script src="Assets/Main/js/main.js"></script>
+
+	<!--  Add from Dashboard-->
+	<script src="Assets/Admin/vendors/js/vendor.bundle.base.js"></script>
+	<!-- endinject -->
+	<!-- Plugin js for this page -->
+	<!-- End plugin js for this page -->
+	<!-- inject:js -->
+	<script src="Assets/Admin/js/off-canvas.js"></script>
+	<script src="Assets/Admin/js/hoverable-collapse.js"></script>
+	<script src="Assets/Admin/js/template.js"></script>
+	<script src="Assets/Admin/js/settings.js"></script>
+	<script src="Assets/Admin/js/todolist.js"></script>
 </body>
 
 </html>

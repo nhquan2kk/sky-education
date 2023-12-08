@@ -91,12 +91,13 @@
 												<c:forEach items="${ examinationsList}" var="item">
 													<tr>
 														<td>${item.examinationId}</td>
-													<td><a
+														<td><a
 															href="DetailExaminationController?examinationId=${item.examinationId }"
 															class="">${item.name }</a></td>
 														<td><img src="img/examination/${item.image}" /></td>
-														<td class="d-flex align-items-center"><a href="AdminUpdateExaminationController?examinationId=${item.examinationId }"> <i
-																class="mdi mdi-table-edit btn-icon"></i>
+														<td class="d-flex align-items-center"><a
+															href="AdminUpdateExaminationController?examinationId=${item.examinationId }">
+																<i class="mdi mdi-table-edit btn-icon"></i>
 														</a>
 															<form id="deleteForm" method="post"
 																action="AdminDeleteExaminationController">

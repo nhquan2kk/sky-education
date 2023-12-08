@@ -19,42 +19,31 @@ import DB.DBConnection;
 @WebServlet("/AdminDeleteExaminationController")
 public class AdminDeleteExaminationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminDeleteExaminationController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	public AdminDeleteExaminationController() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		int examinationId = Integer.parseInt(request.getParameter("examinationId"));
 		Connection conn = DBConnection.CreatConnection();
-		
+
 		try {
 			boolean isDelete = ExaminationDAO.DeleteExamination(conn, examinationId);
-			if(isDelete){
-				response.sendRedirect("AdminExaminationController?pageId=1"); 	
-			}else {
-				System.out.println("Delete faild");
-				
+			if (isDelete) {
+				response.sendRedirect("AdminExaminationController?pageId=1");
+			} else {
 				request.setAttribute("msg", "Delete Failed");
 				response.sendRedirect("AdminExaminationController?pageId=1");
 			}
 			conn.close();
-		}catch(SQLException error) {
+		} catch (SQLException error) {
 			error.printStackTrace();
 		}
 	}

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import BEAN.Member;
 import DAO.LoginDAO;
 import DB.DBConnection;
+import util.constant;
 
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
@@ -26,18 +27,24 @@ public class LoginController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession httpSession = request.getSession(true);
+		System.out.println("LOGIN CONTROLLER");
+		if(httpSession.getAttribute(constant.ESession.MEMBERID.name()) != null) {
+			if((int)httpSession.getAttribute(constant.ESession.MEMBERROLE.name()) == constant.ERole.ADMIN.getValue()) 
+				response.sendRedirect("AdminHomeController");
+			else 
+				response.sendRedirect("HomeController");
+			return;
+		}
+		request.setAttribute("url", request.getParameter("url"));
 		RequestDispatcher rd = request.getRequestDispatcher("View/Shared/Login.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		HttpSession session = request.getSession(true);
-		if(session.getAttribute("sessionMemberId") != null) {
-			response.sendRedirect("AdminHomeController");
-			return;
-		}
+
+		HttpSession httpSession = request.getSession(true);
 		Connection conn = DBConnection.CreatConnection();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -49,13 +56,26 @@ public class LoginController extends HttpServlet {
 			boolean isAuth = LoginDAO.AuthenticationMember(conn, acc);
 			if (isAuth) {
 				int roleId = LoginDAO.AuthorticationMember(conn, acc);
-				session.setAttribute("sessionMemberId", LoginDAO.GetMemberId(conn, acc));
-				session.setAttribute("sessionUser", username);
+				httpSession.setAttribute("sessionMemberId", LoginDAO.GetMemberId(conn, acc));
+				httpSession.setAttribute(constant.ESession.MEMBERID.name(), LoginDAO.GetMemberId(conn, acc));
+				httpSession.setAttribute(constant.ESession.MEMBERROLE.name(), LoginDAO.GetRoleId(conn, acc));
+				httpSession.setAttribute(constant.ESession.MEMBERNAME.name(), username);
+				httpSession.setAttribute("sessionUser", username);
+				
 				conn.close();
+				String uri = request.getParameter("url");
+				if (uri.length() > 0 && uri != null) {
+					uri = uri.substring(15);
+					response.sendRedirect(uri);
+					return;
+				}
+				response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+				response.setHeader("Pragma", "no-cache");
+				response.setHeader("Expires", "0");
 				if (roleId == 1) {
-//					response
-					RequestDispatcher rd = request.getRequestDispatcher("HomeController");
-					rd.forward(request, response);
+					response.sendRedirect("HomeController"); // use this method that replace 'LoginController' url to HomeController url
+//					RequestDispatcher rd = request.getRequestDispatcher("HomeController"); // use this method don't make url different
+//					rd.forward(request, response);
 				} else {
 					response.sendRedirect("AdminHomeController");
 //					RequestDispatcher rd = request.getRequestDispatcher("AdminHomeController");
@@ -67,7 +87,7 @@ public class LoginController extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("View/Shared/Login.jsp");
 				rd.forward(request, response);
 			}
-			
+
 		} catch (SQLException error) {
 			error.printStackTrace();
 		}
