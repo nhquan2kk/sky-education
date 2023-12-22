@@ -13,6 +13,6 @@ public class constant {
 	}
 	 
 	 public static enum ESession {
-		MEMBERID, MEMBERNAME, MEMBERROLE
+		MEMBERID, MEMBERNAME, MEMBERROLE, MEMBERAVATAR
 	}
 }

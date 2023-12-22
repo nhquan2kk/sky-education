@@ -79,7 +79,7 @@ public class AdminUpdateGrammarController extends HttpServlet {
 		grammar.setContent(content);
 		try {
 			boolean kt = GrammarDAO.UpdateGrammar(request, conn, grammar, grammarId, levelId);
-		System.out.println("kt : "+kt);
+			System.out.println("UPDATE GRAMMAR STATUS : "+kt);
 			if (kt) {
 				 response.sendRedirect("AdminGrammarController?pageId=1"); 
 			} else {

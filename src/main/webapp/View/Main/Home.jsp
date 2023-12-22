@@ -36,6 +36,7 @@
 
 <!-- Customized Bootstrap Stylesheet -->
 <link href="Assets/Main/css/style.css" rel="stylesheet">
+
 </head>
 
 <body>

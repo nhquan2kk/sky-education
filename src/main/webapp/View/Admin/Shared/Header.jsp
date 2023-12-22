@@ -27,9 +27,9 @@
               <i class="icon-bell mx-0"></i>
               <span class="count"></span>
             </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+            <div class="dropdown-menu-socket dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
               <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-              <a class="dropdown-item preview-item">
+             <!--  <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
                   <div class="preview-icon bg-success">
                     <i class="ti-info-alt mx-0"></i>
@@ -54,7 +54,7 @@
                     Private message
                   </p>
                 </div>
-              </a>
+              </a> -->
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
                   <div class="preview-icon bg-info">
@@ -62,10 +62,7 @@
                   </div>
                 </div>
                 <div class="preview-item-content">
-                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                  <p class="font-weight-light small-text mb-0 text-muted">
-                    2 days ago
-                  </p>
+                  <h6 class="preview-subject font-weight-normal">Empty</h6>
                 </div>
               </a>
             </div>

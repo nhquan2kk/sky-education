@@ -1,12 +1,16 @@
 package BEAN;
 
+import java.util.Date;
+
 public class Member {
 	private int memberId;
 	private int roleId;
 	private String fullName;
 	private String username;
 	private String password;
-
+	private String avatar;
+	private Date createAt;
+	
 	public int getMemberId() {
 		return memberId;
 	}
@@ -45,6 +49,22 @@ public class Member {
 
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public Date getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
 	}
 
 }

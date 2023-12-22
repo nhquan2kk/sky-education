@@ -45,6 +45,9 @@ public class GrammarController extends HttpServlet {
 				maxPageId = sumRow / COUNT;
 			} else
 				maxPageId = (sumRow / COUNT) + 1;
+			if(maxPageId < pageId) {
+				request.setAttribute("msg", "NOT FOUND");
+			}
 			request.setAttribute("maxPageId", maxPageId);
 			request.setAttribute("listGrammar", list);
 			request.setAttribute("numberPage", pageId);

@@ -72,78 +72,70 @@
 				</p>
 				<!-- <h1 class="mb-4">Latest Articles</h1> -->
 			</div>
-			<div class="row pb-3">
-				<c:forEach items="${listGrammar }" var="item">
-					<div class="col-lg-4 mb-4">
-						<div class="card border-0 shadow-sm mb-2">
-							<img class="card-img-top mb-2" src="img/grammar/${item.image }" alt="" style="height : 200px">
-							<div class="card-body bg-light text-center p-4">
-								<h4 class="">${item.name }</h4>
-								<div class="d-flex justify-content-center mb-3">
-									<small class="mr-3"><i class="fa fa-user text-primary"></i>
-										Admin</small> <small class="mr-3">Level : ${item.nameLevel}</small> <small
-										
-										class="mr-3"><i class="fa fa-comments text-primary"></i>
-										${item.countComment }</small>
+			<c:choose>
+				<c:when test="${msg == 'NOT FOUND' }">
+					<h1>No Found Any Product.</h1>
+				</c:when>
+				<c:otherwise>
+					<div class="row pb-3">
+						<c:forEach items="${listGrammar }" var="item">
+							<div class="col-lg-4 mb-4">
+								<div class="card border-0 shadow-sm mb-2">
+									<img class="card-img-top mb-2" src="img/grammar/${item.image }"
+										alt="" style="height: 200px">
+									<div class="card-body bg-light text-center p-4">
+										<h4 class="">${item.name }</h4>
+										<div class="d-flex justify-content-center mb-3">
+											<small class="mr-3"><i
+												class="fa fa-user text-primary"></i> Admin</small> <small
+												class="mr-3">Level : ${item.nameLevel}</small> <small
+												class="mr-3"><i class="fa fa-comments text-primary"></i>
+												${item.countComment }</small>
+										</div>
+										<!-- 	<p>short content</p> -->
+										<a href="DetailGrammarController?grammarId=${item.grammarId }"
+											class="btn btn-primary px-4 mx-auto my-2">Read More</a>
+									</div>
 								</div>
-							<!-- 	<p>Sed kasd sea sed at elitr sed ipsum justo, sit nonumy
-									diam eirmod, duo et sed sit eirmod kasd clita tempor dolor stet
-									lorem. Tempor ipsum justo amet stet...</p> -->
-								<a href="DetailGrammarController?grammarId=${item.grammarId }"
-									class="btn btn-primary px-4 mx-auto my-2">Read More</a>
 							</div>
+						</c:forEach>
+						<div class="col-md-12 mb-4">
+							<nav aria-label="Page navigation">
+								<ul class="pagination justify-content-center mb-0">
+									<c:if test="${numberPage != 1 }">
+										<li class="page-item "><a class="page-link"
+											href="GrammarController?pageId=${numberPage - 1 }"
+											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+												<span class="sr-only">Previous</span>
+										</a></li>
+									</c:if>
+									<c:forEach begin="1" end="${maxPageId}" var="i">
+										<c:choose>
+											<c:when test="${numberPage eq i }">
+												<li class="page-item active"><a class="page-link">${i}</a></li>
+											</c:when>
+											<c:otherwise>
+												<c:if
+													test="${nummberPage != i and (numberPage - 2 <= i and i < numberPage) or (numberPage + 2 >= i and i > numberPage)   }">
+													<li class="page-item"><a class="page-link"
+														href="GrammarController?pageId=${i }">${i }</a></li>
+												</c:if>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									<c:if test="${numberPage lt maxPageId }">
+										<li class="page-item"><a class="page-link"
+											href="GrammarController?pageId=${numberPage + 1 }"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+												<span class="sr-only">Next</span>
+										</a></li>
+									</c:if>
+								</ul>
+							</nav>
 						</div>
 					</div>
-				</c:forEach>
-				<div class="col-md-12 mb-4">
-					<nav aria-label="Page navigation">
-						<ul class="pagination justify-content-center mb-0">
-							<c:if test="${numberPage == 1 }">
-								<li class="page-item disabled"><a class="page-link"
-									href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-								</a></li>
-								<li class="page-item active"><a class="page-link" href="GrammarController?pageId=1">1</a></li>
-								<li class="page-item"><a class="page-link" href="GrammarController?pageId=2">2</a></li>
-								<li class="page-item"><a class="page-link" href="GrammarController?pageId=3">3</a></li>
-								<li class="page-item"><a class="page-link" href="GrammarController?pageId=${numberPage + 1 }"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-								</a></li>
-
-							</c:if>
-							<c:if test="${numberPage == maxPageId }">
-								<li class="page-item "><a class="page-link"
-									href="GrammarController?pageId=${numberPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-								</a></li>
-								<li class="page-item "><a class="page-link" href="GrammarController?pageId=1">1</a></li>
-								<li class="page-item"><a class="page-link" href="GrammarController?pageId=2">2</a></li>
-								<li class="page-item"><a class="page-link" href="GrammarController?pageId=3">3</a></li>
-								<li class="page-item disabled"><a class="page-link " href=""
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-								</a></li>
-
-							</c:if>
-							<c:if test="${numberPage != 1 && numberPage < maxPageId }">
-								<li class="page-item "><a class="page-link"
-									href="GrammarController?pageId=${numberPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-								</a></li>
-								<li class="page-item active"><a class="page-link" href="GrammarController?pageId=1">1</a></li>
-								<li class="page-item"><a class="page-link" href="GrammarController?pageId=2">2</a></li>
-								<li class="page-item"><a class="page-link" href="GrammarController?pageId=3">3</a></li>
-								<li class="page-item"><a class="page-link" href="GrammarController?pageId=${numberPage + 1 }"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-								</a></li>
-							</c:if>
-						</ul>
-					</nav>
-				</div>
-
-			</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	<!-- Blog End -->

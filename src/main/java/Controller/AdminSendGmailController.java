@@ -1,6 +1,5 @@
 package Controller;
 
-import BEAN.MessageContact;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -11,79 +10,48 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.corundumstudio.socketio.AckRequest;
-import com.corundumstudio.socketio.Configuration;
-import com.corundumstudio.socketio.SocketIOClient;
-import com.corundumstudio.socketio.SocketIOServer;
-import com.corundumstudio.socketio.listener.DataListener;
-import org.slf4j.Logger;
-
-import com.corundumstudio.socketio.*;
-import com.corundumstudio.socketio.listener.DataListener;
-import org.slf4j.Logger;
-
-import com.corundumstudio.socketio.*;
-import com.corundumstudio.socketio.listener.DataListener;/**
- * Servlet implementation class ContactController
+/**
+ * Servlet implementation class AdminSendGmailController
  */
-@WebServlet("/ContactController")
-public class ContactController extends HttpServlet {
+@WebServlet("/AdminSendGmailController")
+public class AdminSendGmailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	SocketIOServer socketIOServer = null; 
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ContactController() {
+    public AdminSendGmailController() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-    public void init(ServletConfig config) throws ServletException {
-		System.out.println("INIT SERVER");
-		Configuration configuration = null;
-		try {
-			configuration = new Configuration();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		configuration.setHostname("localhost");
-		configuration.setPort(9092);
-
-		socketIOServer = new SocketIOServer(configuration);
-
-		socketIOServer.addEventListener("chatevent", MessageContact.class, new DataListener<MessageContact>() {
-			@Override
-			public void onData(SocketIOClient client,MessageContact data, AckRequest ackRequest) throws Exception {
-				System.out.println("on event from Contact Controller");
-				socketIOServer.getBroadcastOperations().sendEvent("chatevent", data);
-			}
-		});
-
-		socketIOServer.start();
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("View/Main/Contact.jsp");
-		rd.forward(request, response);
+		String email = request.getParameter("email");
+		String subject = request.getParameter("subject");
+		String body = request.getParameter("body");
+		request.setAttribute("email", email);
+		request.setAttribute("subject", subject);
+		request.setAttribute("body", body);
+		request.getRequestDispatcher("View/Admin/SendEmail.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Coding");
 		final String username = "requesttest.skyeducation@gmail.com";
 		final String password = "ldrz prnl thbh gjex";
-		final String emailTo = "quantalaquan@gmail.com";
+		final String emailTo = request.getParameter("email");
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
 		Properties prop = new Properties();
@@ -108,7 +76,7 @@ public class ContactController extends HttpServlet {
 			msg.setContent(content,  "text/html; charset=ISO-8859-1");
 			Transport.send(msg);
 			request.setAttribute("msgSuccess", "Send email successfully!");
-			RequestDispatcher rd = request.getRequestDispatcher("View/Main/Contact.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("AdminHomeController");
 			rd.forward(request, response);
 //			response.sendRedirect("ContactController");
 			System.out.print("DONE");
@@ -116,7 +84,5 @@ public class ContactController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	public void destroy() {
-		socketIOServer.stop();
-	}
+
 }

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import BEAN.Member;
 import DAO.LoginDAO;
+import DAO.ProfileDAO;
 import DB.DBConnection;
 import util.constant;
 import util.helpers;
@@ -57,12 +58,14 @@ public class LoginController extends HttpServlet {
 			boolean isAuth = LoginDAO.AuthenticationMember(conn, acc);
 			if (isAuth) {
 				int roleId = LoginDAO.AuthorticationMember(conn, acc);
+				String avatarSrc = ProfileDAO.GetUserAvatar(conn, acc);
 				httpSession.setAttribute("sessionMemberId", LoginDAO.GetMemberId(conn, acc));
 				httpSession.setAttribute(constant.ESession.MEMBERID.name(), LoginDAO.GetMemberId(conn, acc));
-				httpSession.setAttribute(constant.ESession.MEMBERROLE.name(), LoginDAO.GetRoleId(conn, acc));
+				httpSession.setAttribute(constant.ESession.MEMBERROLE.name(), roleId);
 				httpSession.setAttribute(constant.ESession.MEMBERNAME.name(), username);
+				httpSession.setAttribute(constant.ESession.MEMBERAVATAR.name(), avatarSrc);
 				httpSession.setAttribute("sessionUser", username);
-				
+				System.out.println(constant.ESession.MEMBERAVATAR.name()+" "+constant.ESession.MEMBERNAME.name());
 				conn.close();
 				String uri = request.getParameter("url");
 				if (uri.length() > 0 && uri != null) {

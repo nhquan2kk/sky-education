@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
-	<!-- Add this block to prevent back button after logout  -->
+<!-- Add this block to prevent back button after logout  -->
 <%
-	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-	response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-	response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+response.setDateHeader("Expires", 0);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -156,9 +156,9 @@
 							<div class="card">
 								<div class="card-body">
 									<p class="card-title">New Member Report</p>
-									<p class="font-weight-500 mb-3">The total number of new member
-										within the date range. That's the time that users register for
-										an account every day</p>
+									<p class="font-weight-500 mb-3">The total number of new
+										member within the date range. That's the time that users
+										register for an account every day</p>
 									<canvas id="lineChart"></canvas>
 								</div>
 							</div>
@@ -168,10 +168,10 @@
 								<div class="card-body">
 									<div class="d-flex justify-content-between">
 										<p class="card-title">Feature Report</p>
-									<!-- 	<a href="Assets/Admin/#" class="text-info">View all</a> -->
+										<!-- 	<a href="Assets/Admin/#" class="text-info">View all</a> -->
 									</div>
-									<p class="font-weight-500 mb-3">The total number of every feature
-										</p>
+									<p class="font-weight-500 mb-3">The total number of every
+										feature</p>
 									<div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
 									<canvas id="pieChart"></canvas>
 								</div>
@@ -192,10 +192,11 @@
 														class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
 														<div class="ml-xl-4 mt-3">
 															<p class="card-title">Number Of Examination Reports</p>
-														<!-- 	<h1 class="text-primary">$34040</h1> -->
+															<!-- 	<h1 class="text-primary">$34040</h1> -->
 															<!-- `<h3 class="font-weight-500 mb-xl-4 text	-primary">North
 																America</h3> -->
-															<p class="mb-2 mb-xl-0">The total number of examination by level.</p>
+															<p class="mb-2 mb-xl-0">The total number of
+																examination by level.</p>
 														</div>
 													</div>
 													<div class="col-md-12 col-xl-9">
@@ -333,7 +334,7 @@
 					</div>
 				</div>
 			</div>
-
+			<script src="Assets/Shared/socket.io/socket.io.js"></script>
 			<!-- plugins:js -->
 			<script src="Assets/Admin/vendors/js/vendor.bundle.base.js"></script>
 			<!-- endinject -->
@@ -344,7 +345,7 @@
 			<script
 				src="Assets/Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 			<script src="Assets/Admin/js/dataTables.select.min.js"></script>
-
+			<script src="Assets/Admin/js/MySocket.js"></script>
 			<!-- End plugin js for this page -->
 			<!-- inject:js -->
 			<script src="Assets/Admin/js/off-canvas.js"></script>
