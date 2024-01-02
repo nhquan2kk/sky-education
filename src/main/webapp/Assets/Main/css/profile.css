@@ -6,11 +6,11 @@
 }
 
 .card-container {
-	background-color: #231E39;
+	/* background-color: #231E39; */
 	border-radius: 25px;
-	box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
+	box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.35);
 	color: #B3B8CD;
-	padding: 30px 0 0;
+	padding: 30px 0;
 	position: relative;
 	width: 350px;
 	max-width: 100%;
@@ -32,7 +32,7 @@
 }
 
 .card-container img {
-	border: 1px solid #C400D7;
+	border: 1px solid #17a2b8;
 	border-radius: 50%;
 	padding: 7px;
 	height: 150px;
@@ -53,19 +53,19 @@
 	line-height: 21px;
 }
 
-.btn-upload-new-avatar, .btn-submit {
-	background-color: #C400D7;
-	border: 1px solid #C400D7;
+.btn-upload-new-avatar, .btn-cancer-profile, .btn-submit {
+	background-color: #17a2b8;
+	border: 1px solid #17a2b8;
 	border-radius: 3px;
 	color: #fff;
 	font-family: Montserrat, sans-serif;
 	font-weight: 500;
-	padding: 10px 25px;
+	padding: 7px 16px;
 }
 
 .primary.ghost {
 	background-color: transparent;
-	color: #C400D7;
+	color: #17a2b8;
 }
 
 .skills {
@@ -92,13 +92,16 @@
 
 .avatar-user {
 	width: 50px;
+	height: 50px;
 	cursor: pointer;
 }
 
 .avatar-user>img {
 	width: 100%;
+	border-radius: 50%;
 	height: 100%;
 }
+
 .form-upload-img {
 	display: none;
 }

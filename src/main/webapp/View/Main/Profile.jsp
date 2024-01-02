@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,21 +44,33 @@
 	<!-- Navbar End -->
 	<div class="wrapper-card">
 		<div class="card-container">
-			<span class="pro">PRO</span> <img src="img/profile/${userInfo.avatar }" alt="user" />
+			<span class="pro">PRO</span> <img
+				src="img/profile/${userInfo.avatar }" alt="user" />
 			<h3 class="card-username">${userInfo.username }</h3>
 			<h6 class="card-fullname">${userInfo.fullName }</h6>
 			<p class="card-subtitle">
-				${userInfo.createAt} <br /> front-end developer
+				${userInfo.createAt} <br />
 			</p>
 			<div class="buttons">
-				<button class="btn-upload-new-avatar" onclick="handleUploadAvatar()">Update your avatar</button>
-				<form action="ProfileController" method="post" id="formUploadImg" class="form-upload-img">
-					<input type="file" name="avatar"/>	
+				<button class="btn-upload-new-avatar" onclick="handleUploadAvatar()">Update
+					your avatar</button>
+				<form action="ProfileController" method="post" id="formUploadImg" enctype="multipart/form-data"
+					class="form-upload-img">
+					<div class="input-group mb-3">
+						<div class="custom-file m-3">
+							<input type="file" class="custom-file-input" name="avatar"
+								id="inputGroupFile02"> <label class="custom-file-label"
+								for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose
+								file</label>
+						</div>
+						<div class="input-group-append"></div>
+					</div>
+
 					<button class="btn-submit" type="submit">Submit</button>
-				<button class="btn-cancer primary ghost" type="button">Cancer</button> 
+					<button class="btn-cancer-profile primary ghost" type="button">Cancer</button>
 				</form>
 			</div>
-			<div class="skills">
+			<!-- <div class="skills">
 				<h6>Skills</h6>
 				<ul>
 					<li>UI / UX</li>
@@ -69,7 +81,7 @@
 					<li>React</li>
 					<li>Node</li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<!-- Footer Start -->
@@ -84,14 +96,15 @@
 	<script>
 		const formUploadImg = $('#formUploadImg');
 		console.log('update: ', formUploadImg);
-		const btnUploadImg = ('.btn-upload-new-avatar');
+		const btnUploadImg = $('.btn-upload-new-avatar');
 		const handleUploadAvatar = () => {
 			console.log('UPDLOADS');
 			formUploadImg.show();
 			btnUploadImg.hide();	
 		}
-		$('.btn-cancer').click(()=>{
+		$('.btn-cancer-profile').click(()=>{
 			formUploadImg.hide();
+			btnUploadImg.show();
 		})	
 	</script>
 	<!-- JavaScript Libraries -->

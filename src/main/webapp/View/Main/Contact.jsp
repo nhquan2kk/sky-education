@@ -54,7 +54,7 @@
 	<div class="position-fixed bottom-0 start-0 p-3" style="z-index: 11">
 		<div id="myToastEl" class="toast hide bg-primary" role="alert"
 			aria-live="assertive" aria-atomic="true">
-			<div class="toast-body text-white">${msgSuccess}</div>
+			<div class="toast-body text-white">Send message sucess!</div>
 		</div>
 	</div>
 	<!-- Navbar Start -->
@@ -98,8 +98,9 @@
 								<p class="help-block text-danger"></p>
 							</div>
 							<div>
-								<button class="btn btn-primary py-2 px-4" type="button" onclick="sendMessage()"
-									id="sendMessageButton">Send Message</button>
+								<button class="btn btn-primary py-2 px-4" type="button"
+									onclick="sendMessage()" id="sendMessageButton">Send
+									Message</button>
 							</div>
 						</form>
 					</div>
@@ -166,63 +167,53 @@
 	<script>
 		var myToastEl = document.getElementById('myToastEl')
 		var myToast = bootstrap.Toast.getOrCreateInstance(myToastEl) // Returns a Bootstrap toast instance
-		console.log('MYTOAST: ', myToastEl);
 		var content = document.getElementById('msgSuccess').innerHTML;
-		console.log('content: ', content);
-		if (content.length > 0 && content === 'Send email successfully!') {
+		var socket = io.connect('http://localhost:9095');
+		console.log('socket: ', socket);
+		socket
+				.on(
+						'connect',
+						function() {
+							console.log("INIT SUCCESS", socket);
+							output('<span class="connect-msg">Client has connected to the server!</span>');
+						});
+
+		socket.on('chatevent', function(data) {
 			myToast.show();
+		});
+
+		socket.on('disconnect', function() {
+				
+		});
+
+		function sendDisconnect() {
+			socket.disconnect();
 		}
-		console.log('myTOast : ', myToast)
-	</script>
-	<script>
-	var socket = io.connect('http://localhost:9095');
-	console.log('socket: ', socket);
-	socket
-			.on(
-					'connect',
-					function() {
-						console.log("INIT SUCCESS", socket);
-						output('<span class="connect-msg">Client has connected to the server!</span>');
-					});
 
-	socket.on('chatevent', function(data) {
-		output('<span class="username-msg">' + data.userName + ':</span> '
-				+ data.message);
-	});
+		function sendMessage() {
+			const email = $('#email').val();
+			const subject = $('#subject').val();
+			var myContent = tinymce.get("summernote").getContent();
+			const content = $('#summernote').val();
+			console.log(myContent, ' content: ', content);
+			console.log('email: ', email);
+			console.log('subject: ', subject);
+			var message = $('#msg').val();
+			$('#msg').val(' ');
 
-	socket.on('disconnect', function() {
-		output('<span class="disconnect-msg">The Client(' + userName
-				+ ') has disconnected!</span>');
-	});
+			var jsonObject = {
+				email : email,
+				subject : subject,
+				body : myContent
+			};
+			console.log('json: ', jsonObject);
 
-	function sendDisconnect() {
-		socket.disconnect();
-	}
+			socket.emit('chatevent', jsonObject);
+		}
 
-	function sendMessage() {
-		const email = $('#email').val();
-		const subject = $('#subject').val();
-		var myContent = tinymce.get("summernote").getContent();
-		const content = $('#summernote').val();
-		console.log(myContent, ' content: ', content);
-		console.log('email: ', email);
-		console.log('subject: ', subject);
-		var message = $('#msg').val();
-		$('#msg').val(' ');
-
-		var jsonObject = {
-			email: email,
-			subject: subject,
-			body: myContent
-		};
-		console.log('json: ', jsonObject);
-
-		socket.emit('chatevent', jsonObject);
-	}
-
-	function output(message) {
-		console.log('msg: ', message);
-	}
+		function output(message) {
+			console.log('msg: ', message);
+		}
 	</script>
 	<!-- JavaScript Libraries -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

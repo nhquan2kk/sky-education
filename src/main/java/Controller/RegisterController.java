@@ -48,8 +48,9 @@ public class RegisterController extends HttpServlet {
 		System.out.println("REGISTER: "+helpers.getMd5(password)+" "+test);
 		if(test) {
 			request.setAttribute("msg", "Register successfull");
-			RequestDispatcher rd = request.getRequestDispatcher("View/Shared/Login.jsp");
-			rd.forward(request, response);
+			response.sendRedirect("LoginController");
+//			RequestDispatcher rd = request.getRequestDispatcher("View/Shared/Login.jsp");
+//			rd.forward(request, response);
 		}else {
 			request.setAttribute("msg", "Register error");
 			RequestDispatcher rd = request.getRequestDispatcher("RegisterController");

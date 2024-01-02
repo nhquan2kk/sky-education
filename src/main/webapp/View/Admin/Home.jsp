@@ -204,7 +204,6 @@ response.setDateHeader("Expires", 0);
 															<div class="col-12 ">
 																<canvas id="horizontalBarChart"></canvas>
 															</div>
-															`
 														</div>
 													</div>
 												</div>

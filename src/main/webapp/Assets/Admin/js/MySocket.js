@@ -14,20 +14,11 @@ $('#notificationDropdown').click(() => {
 socket.on('chatevent', function(data) {
 	$('.count').show();
 	console.log('data: ', data);
-	dropMenu.html(`<a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                <div class="preview-icon bg-info">
-                  <i class="ti-user mx-0"></i>
-                </div>
-              </div>
-              <div class="preview-item-content">
-                <h6 class="preview-subject font-weight-normal"><a href="AdminSendGmailController?email=${data.email}&subject=${data.subject}&body=${data.body}">New message</a></h6>
-              </div>
-            </a>`);
+	dropMenu.html(`<li class="dropdown-item preview-item"><div class="preview-thumbnail"><div class="preview-icon bg-info"><i class="ti-user mx-0"></i></div></div><div class="preview-item-content"><h6 class="preview-subject font-weight-normal"><a href="AdminSendGmailController?email=${data.email}&subject=${data.subject}&body=${data.body}">New message</a></h6></div></li>`);
 });
 
 socket.on('disconnect', function() {
-	
+
 });
 
 function sendDisconnect() {
